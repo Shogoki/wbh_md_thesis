@@ -34,7 +34,7 @@ pdf:
 	--highlight-style pygments \
 	-V fontsize=12pt \
 	-V papersize=a4paper \
-	-V documentclass=report \
+	-V documentclass=article \
 	-N \
 	--pdf-engine=xelatex \
 	--verbose
@@ -46,7 +46,7 @@ tex:
 	--bibliography="$(BIBFILE)" \
 	-V fontsize=12pt \
 	-V papersize=a4paper \
-	-V documentclass=report \
+	-V documentclass=article \
 	-N \
 	--csl="$(STYLEDIR)/ref_format.csl" \
 	--latex-engine=xelatex

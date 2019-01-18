@@ -1,3 +1,4 @@
+
 # Introduction, with a citation
 
 ## Background
