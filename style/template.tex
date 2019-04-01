@@ -1,4 +1,13 @@
-\documentclass[$if(fontsize)$$fontsize$,$endif$$if(lang)$$lang$,oneside,$endif$$if(papersize)$$papersize$,$endif$$for(classoption)$$classoption$$sep$,$endfor$]{$documentclass$}
+%% \documentclass[$if(fontsize)$$fontsize$,$endif$$if(lang)$$lang$,$endif$,twoside=false,$if(papersize)$$papersize$,$endif$$for(classoption)$$classoption$$sep$,$endfor$]{$documentclass$}
+\documentclass[
+fontsize=12pt,
+twoside=false, %% Note: implies raggedbottom instead of flushbottom
+headings=normal, %%!!!
+open=any, %%!!!
+paper=a4,parskip=half,
+listof=totoc %%!!!
+]{scrbook}  
+
 $if(fontfamily)$
 \usepackage{$fontfamily$}
 $else$
@@ -164,6 +173,7 @@ $header-includes$
 $endfor$
 
 \begin{document}
+\frontmatter 
 $if(title)$
 \maketitle
 $endif$

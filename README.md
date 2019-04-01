@@ -1,3 +1,19 @@
+# This is a fork of [tompollard/phds_thesis_markdown](https://github.com/tompollard/phd_thesis_markdown)
+
+I did some modifications that it is fitting for the BPP and/or Bachelor Thesis format of Wilhelm Büchner Hochschule (WBH)
+
+I also added another folder to be able to write an expose with the same format: Source files are in expose_src.
+You can simply run make expose.
+
+I suggest to use VSCode as an Editor and use the following Extensions:
+
+* Code Spell Checker + Language extension (e.G. German)
+* Pandoc Citer
+* vscode-pdf
+
+# ORIGINAL README.MD
+________________________________________________
+
 # Template for writing a PhD thesis in Markdown [![Build Status](https://travis-ci.org/tompollard/phd_thesis_markdown.svg?branch=master)](https://travis-ci.org/tompollard/phd_thesis_markdown)  
 
 [![DOI](https://zenodo.org/badge/doi/10.5281/zenodo.58490.svg)](http://dx.doi.org/10.5281/zenodo.58490)
