@@ -26,16 +26,50 @@ help:
 	@echo 'or generic ones from: https://github.com/jgm/pandoc-templates		  '
 
 pdf:
+	./convert_svg.sh && \
 	pandoc "$(INPUTDIR)"/*.md \
 	-o "$(OUTPUTDIR)/thesis.pdf" \
 	-H "$(STYLEDIR)/preamble.tex" \
 	--template="$(STYLEDIR)/template.tex" \
-	--bibliography="$(BIBFILE)" 2>pandoc.log \
+	--bibliography="$(BIBFILE)" \
 	--csl="$(STYLEDIR)/ref_format.csl" \
 	--highlight-style pygments \
 	-V fontsize=12pt \
 	-V papersize=a4paper \
-	-V documentclass=article \
+	-V documentclass=scrbook \
+	-N \
+	--pdf-engine=xelatex \
+	--verbose  2>pandoc.log
+
+pipeline:
+	./convert_svg.sh && \
+	pandoc "$(INPUTDIR)"/*.md \
+	-o "$(OUTPUTDIR)/the owsis.pdf" \
+	-H "$(STYLEDIR)/preamble.tex" \
+	--template="$(STYLEDIR)/template.tex" \
+	--bibliography="$(BIBFILE)" \
+	--csl="$(STYLEDIR)/ref_format.csl" \
+	--highlight-style pygments \
+	-V fontsize=12pt \
+	-V papersize=a4paper \
+	-V documentclass=scrbook \
+	-N \
+	--pdf-engine=xelatex \
+	--verbose && \
+	./wordcount.sh && \
+	python3 upload_thesis.py $(owncloud-password)
+pdf_cicd:
+	./convert_svg.sh && \
+	pandoc "$(INPUTDIR)"/*.md \
+	-o "$(OUTPUTDIR)/thesis.pdf" \
+	-H "$(STYLEDIR)/preamble.tex" \
+	--template="$(STYLEDIR)/template.tex" \
+	--bibliography="$(BIBFILE)" \
+	--csl="$(STYLEDIR)/ref_format.csl" \
+	--highlight-style pygments \
+	-V fontsize=12pt \
+	-V papersize=a4paper \
+	-V documentclass=scrbook \
 	-N \
 	--pdf-engine=xelatex \
 	--verbose
@@ -55,11 +89,27 @@ expose:
 		--pdf-engine=xelatex \
 		--verbose
 
+tex2:
+	pandoc "$(INPUTDIR)"/*.md \
+		-o "$(OUTPUTDIR)/thesis.tex" \
+		-H "$(STYLEDIR)/preamble.tex" \
+		--template="$(STYLEDIR)/template.tex" \
+		--bibliography="$(BIBFILE)" \
+		--csl="$(STYLEDIR)/ref_format.csl" \
+		--highlight-style pygments \
+		-V fontsize=12pt \
+		-V papersize=a4paper \
+		-V documentclass=article \
+		-N \
+		--pdf-engine=xelatex \
+		--verbose  
+
 tex:
 	pandoc "$(INPUTDIR)"/*.md \
 	-o "$(OUTPUTDIR)/thesis.tex" \
 	-H "$(STYLEDIR)/preamble.tex" \
 	--bibliography="$(BIBFILE)" \
+	--template="$(STYLEDIR)/template.tex" \
 	-V fontsize=12pt \
 	-V papersize=a4paper \
 	-V documentclass=article \
